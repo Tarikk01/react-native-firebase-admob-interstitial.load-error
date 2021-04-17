@@ -1,0 +1,1 @@
+# react-native-firebase-admob-interstitial.load-error
