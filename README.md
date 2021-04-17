@@ -4,4 +4,33 @@ I am trying to place interstitialAd in my project but the interstitialAd.load();
 Used Plugin: @react-native-firebase/admob
 
 
+import { Button, View } from 'react-native';
+import { InterstitialAd, AdEventType, TestIds } from '@react-native-firebase/admob';
 
+export default class InterstitialAdUnit extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    
+    showInterstitialAd = () => {
+        
+        const interstitialAd = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL);
+       
+        interstitialAd.onAdEvent((type, error) => {           
+            if (type === AdEventType.LOADED) {
+                interstitialAd.show();
+            }
+        });
+        
+        interstitialAd.load();
+    } 
+    render() {
+        return (
+            <Button
+                title="Show Interstitial"
+                onPress={() => {
+                    this.showInterstitialAd();
+                }}
+            />    
+    )}
+}
